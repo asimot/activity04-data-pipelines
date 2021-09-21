@@ -258,13 +258,16 @@ Only display the variables `major`, `p25th`, `median`, and `p75th`
 Name the code chunk `stem_low_salaries`.
 
 ```{r}
+college_recent_grads %>%
+  filter(college_recent_grads$major_category %in% stem_categories & median < 36000) %>%
+  select(major, p25th, median, p75th)
 
 ```
 
 Discuss your output as it relates to the research question.
 
 **Response**:
-
+The output appears to be giving majors mostly in the physical sciences, which also seem to be majors that would most benefit from having a masters+ degree, most specifically neuroscience and physiology.  These fields could get away with an undergrad only, but in doing so you are outcompeted by those with the higher degrees, thus resulting in lower wages.
 
 ![](README-img/noun_pause.png) **(Final) Planned Pause Point**: If you have any questions, contact your instructor. Otherwise feel free to continue on.
 
