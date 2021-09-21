@@ -34,7 +34,8 @@ Now, switch this option to `message = TRUE` and knit your report again.
 Discuss what is different when the `message` option is turned on (`TRUE`) and turned off (`FALSE`) for the previous code chunk.
 
 **Response**:
-
+--Message = FALSE leaves the chunk's output out of the knit document
+--Message = TRUE puts the chunk's output into the knit document
 
 Turn the `message` option off and continue in this activity.
 
