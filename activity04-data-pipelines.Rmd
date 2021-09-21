@@ -79,7 +79,7 @@ You can view the entire dataset by clicking on the name of the data frame in the
 Explore and describe what the `message` option does in `load_data` code chunk.
 
 **Response**:
-
+Message = TRUE lets us see a brief display of datatypes and the columns correlated to that data type in the output window under the chunk, if we set this option to FALSE then we are not including the datatypes and columns in the the knit document.
 
 Turn the `message` option off and continue in this activity.
 
@@ -122,8 +122,11 @@ Below is a blank R code chunk.
 Name this code chunk `college_grads_top`; you do not need to suppress messages.
 In this code chunk, type `college_recent_grads` to view the top few (first 10) entries of the dataset.
 
-```{r}
-
+```{r college_grads_top, MESSAGE = TRUE}
+#it appears using head and not lead to the same output -- assumed that we are
+#using tibble to get the non-head use and only view the first few lines
+#head(college_recent_grads)
+college_recent_grads
 ```
 
 
@@ -172,12 +175,14 @@ Note that the ACS only asks [one question](https://www.census.gov/acs/www/about/
 
 #### Describe your process
 
-What information (variables) do we need to answer this question?
-Describe how you would go about answering this question using a different software (e.g., Excel, SAS, Python) that you are familiar with or simply a general process.
-You do not need to code anything.
-As you write this process, think of it as a series of steps and it might be helpful to start at the goal and work backwards.
+1) What information (variables) do we need to answer this question?
+2) Describe how you would go about answering this question using a different software (e.g., Excel, SAS, Python) that you are familiar with or simply a general process.
+3) You do not need to code anything.
+4) As you write this process, think of it as a series of steps and it might be helpful to start at the goal and work backwards.
 
 **Response**:
+1) 'major', 'unemployment_rate'
+2) In Excel -- Apply a row filter on unemployment_rate column in ascending order
 
 
 #### Using `{dplyr}`
@@ -186,7 +191,9 @@ In the R code chunk below, name it `rearrange_college`.
 
 Take the `college_recent_grads` dataset, *then* `arrange` the dataset by `unemployment_rate`.
 
-```{r}
+```{r rearrange_college, MESSAGE = FALSE}
+college_recent_grads %>%
+  arrange(unemployment_rate)
 
 ```
 
@@ -199,12 +206,15 @@ Also, notice that by default when you *arrange* by a variable, it defaults to *a
 Use the pipeline that you made in the `rearrange_college` code chunk as the start to this solution, **then** `select` only the variables `rank`, `major`, and `unemployment_rate`.
 Name this code chunk `lowest_unemploy`.
 
-```{r}
-
+```{r, lowest_employ, message=TRUE}
+college_recent_grads %>%
+  select(rank, major, unemployment_rate) %>%
+  arrange(unemployment_rate)
 ```
 
 **Response**:
-
+The major(s) with the lowest unemployment rate are Mathematics and computer science, 
+Military technologies, botany, soil science, and educational administration and supervision
 
 ![](README-img/noun_pause.png) **Planned Pause Point**: If you have any questions, contact your instructor. Otherwise feel free to continue on.
 
@@ -213,14 +223,17 @@ Name this code chunk `lowest_unemploy`.
 Using the `college_recent_grads` dataset and functions from `{dplyr}`, `arrange` the dataset by `sharewomen`, and `select` only `rank`, `major`, and `sharewomen`. 
 Name your code chunk `highest_prop_women`.
 
-```{r}
+```{r highest_prop_women}
+college_recent_grads %>%
+  select(rank, major, sharewomen) %>%
+  arrange(desc(sharewomen))
 
 ```
 
 Discuss your output as it relates to the research question.
 
 **Response**:
-
+We see the majors with the highest proportion of women being educational majors such as early childhood and special needs as well as a higher proportion in the medical fields as well.
 
 ![](README-img/noun_pause.png) **Planned Pause Point**: If you have any questions, contact your instructor. Otherwise feel free to continue on.
 
